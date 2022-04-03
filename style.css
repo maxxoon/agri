@@ -10,3 +10,44 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, brown, orange, tan, white, yellow, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, agriculture firm
 Text Domain: hriddhilan
 */
+
+
+/*
+* owl cursel css code
+*/
+
+.owl-nav {
+	position: absolute;
+	top: 40%;
+	font-size: 50px;
+	color: #fff;
+	width: 100%;
+}
+
+button.owl-next {
+    position: absolute;
+    right: 35px;
+	width: 50px;
+	height: 60px;
+	background: ;
+}
+
+button.owl-prev {
+    left: 30px;
+    position: absolute;
+	width: 50px;
+	height: 60px;
+}
+
+
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+	background: #d3d0d0 !important;
+	color: #000 !important;
+	line-height: 10px !important;
+	border-radius: 5px;
+}
+
+.willom {
+	z-index: 10;
+	position: sticky;
+}

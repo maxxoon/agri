@@ -1,117 +1,45 @@
 <?php
 get_header();
 ?>
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-      </div>
-      <!-- end loader -->
-      <div class="full_bg">
-         <!-- header -->
-         <header class="header-area">
-            <div class="container-fluid">
-               <div class="row d_flex">
-                  <div class=" col-md-2 col-sm-3">
-                     <div class="logo">
-                        <a href="index.html">Agro<span>Pro</span></a>
-                     </div>
-                  </div>
-                  <div class="col-md-8 col-sm-9">
-                     <div class="navbar-area">
-                        <nav class="site-navbar">
-                           <ul>
-                              <li><a class="active" href="index.html">Home</a></li>
-                              <li><a href="about.html">About</a></li>
-                              <li><a href="service.html">Service</a></li>
-                               <li><a href="Javascript:void(0)">Projects</a></li>
-                                <li><a href="testimonail.html">Testimonail</a></li>
-                              <li><a href="blog.html">Blog</a></li>
-                              <li><a href="contact.html">Contact</a></li>
-                           </ul>
-                           <button class="nav-toggler">
-                           <span></span>
-                           </button>
-                        </nav>
-                     </div>
-                  </div>
-                  <div class="col-md-2 padd_0 d_none">
-                     <ul class="email text_align_right">
-                        <li><a href="Javascript:void(0)">Login</a>
-                        </li>
-                        <li><a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </header>
-         <!-- end header inner -->
+   
          <!-- top -->
          <div class="slider_main">
+         <div id="banner1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
             <!-- carousel code -->
-             <div id="banner1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
-                              <ol class="carousel-indicators">
-                                 <li data-target="#banner1" data-slide-to="0" class="active"></li>
-                                 <li data-target="#banner1" data-slide-to="1"></li>
-                                 <li data-target="#banner1" data-slide-to="2"></li>
-                              </ol>
-                              <div class="carousel-inner" role="listbox">
-                                 <div class="carousel-item active">
-                                    <picture>
-                                       <source srcset="images/banner.jpg" >
-                                     
-                                       <img srcset="images/banner.jpg" alt="responsive image" class="d-block img-fluid">
-                                    </picture>
-                                    <div class="carousel-caption relative">
-                                       
-                                    </div>
-                                 </div>
-                                 <!-- /.carousel-item -->
-                                 <div class="carousel-item">
-                                    <picture>
-                                     
-                                       <img srcset="images/banner.jpg" alt="responsive image" class="d-block img-fluid">
-                                    </picture>
-                                    <div class="carousel-caption relative">
-                                       
-                                    </div>
-                                 </div>
-                                 <!-- /.carousel-item -->
-                                 <div class="carousel-item">
-                                    <picture>
-                                       <source srcset="images/banner.jpg" >
-                                       <source srcset="images/banner.jpg" >
-                                       <source srcset="images/banner.jpg" >
-                                       <img srcset="images/banner.jpg" alt="responsive image" class="d-block img-fluid">
-                                    </picture>
-                                    <div class="carousel-caption relative">
-                                       
-                                    </div>
-                                 </div>
-                                 <!-- /.carousel-item -->
-                              </div>
-                              <!-- /.carousel-inner -->
-                              <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
-                              <i class="fa fa-angle-left" aria-hidden="true"></i>
-                              <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                              <span class="sr-only">Next</span>
-                              </a>
-                           </div>
-                           <div class="container-fluid">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <div class="willom">
-                                      <h1> Agriculture Fram</h1>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+            <div class="carousel-inner" role="listbox">
+            <div class="owl-carousel">
+               <?php 
+               $agrosld = null;
+               $agrosld = new WP_Query( array(
+                  'post_type'    => 'agroslider',
+                  'post_per_page'   => '-1',
+                  'order' => 'ASC',
+               ) );
+               if( $agrosld->have_posts() ){
+                  while( $agrosld->have_posts() ){
+                     $agrosld->the_post(); ?>
+                      <div><?php the_post_thumbnail('agsld'); ?></div>
+                  <?php }
+               } else{
+                  echo 'No Slider';
+               };
+               
+               ?>
+               
+            </div>
+         </div> 
+         </div>  
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="willom">
+                           <h1> Agriculture Fram</h1>
+                        </div>
+                     </div>
+                  </div>
+               </div>
          </div>
+      
       </div>
       <!-- end banner -->
       <!-- about -->
@@ -120,23 +48,23 @@ get_header();
             <div class="row d_flex">
                <div class="col-lg-6 col-md-12">
                   <div class="titlepage text_align_left">
-                     <span>About Us</span>
-                     <h2>AGRICULTURE MARKET</h2>
-                     <p>fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that itfact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that itfact th</p>
-                     <a class="read_more" href="about.html">Learn More</a>
+                     <span><?php echo $redux_demo['hm_about']; ?></span>
+                     <h2><?php echo $redux_demo['hm_sub_title']; ?></h2>
+                     <p><?php echo $redux_demo['hm_content']; ?></p>
+                     <a class="read_more" href="about.html"><?php echo $redux_demo['hm_ab_btn']; ?></a>
                   </div>
                </div>
                <div class="col-lg-6 col-md-12">
                   <div class="row d_flex">
                    <div class="col-md-7">
                      <div class="about_img">
-                        <figure><img src="images/about_img.jpg" alt="#"/>
+                        <figure><img src="<?php echo $redux_demo['hm_pic1']['url']; ?>" alt="#"/>
                         </figure>
                      </div>
                    </div>
                    <div class="col-md-5">
                      <div class="about_img">
-                        <figure><img src="images/about_img1.jpg" alt="#"/>
+                        <figure><img src="<?php echo $redux_demo['hm_pic2']['url']; ?>" alt="#"/>
                         </figure>
                      </div>
                    </div>
@@ -161,7 +89,7 @@ get_header();
                <div class="col-md-4">
                   <div class="services_box_main">
                      <div  class="services_box text_align_left">
-                          <figure><img src="images/service1.jpg" alt="#"/></figure>
+                          <figure><img src="<?php echo get_template_directory_uri() ?>/images/service1.jpg" alt="#"/></figure>
                         <div class="veget">
                            <h3>FRESH<br>VEGETABLES</h3>
                            <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
@@ -173,7 +101,7 @@ get_header();
                <div class="col-md-4">
                <div class="services_box_main">
                      <div  class="services_box text_align_left">
-                          <figure><img src="images/service2.jpg" alt="#"/></figure>
+                          <figure><img src="<?php echo get_template_directory_uri() ?>/images/service2.jpg" alt="#"/></figure>
                         <div class="veget">
                            <h3>AGRICULTURE<br>PRODUCTS</h3>
                            <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
@@ -185,7 +113,7 @@ get_header();
                <div class="col-md-4">
                <div class="services_box_main">
                      <div  class="services_box text_align_left">
-                          <figure><img src="images/service3.jpg" alt="#"/></figure>
+                          <figure><img src="<?php echo get_template_directory_uri() ?>/images/service3.jpg" alt="#"/></figure>
                         <div class="veget">
                            <h3>ORGANIC<br>PRODUCTS</h3>
                            <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
@@ -227,27 +155,27 @@ get_header();
                            <div class="col-md-6">
                               <div class="custom">
                                  <div class="d_flex">
-                                    <i><img src="images/customer1.jpg" alt="#"/></i>
+                                    <i><img src="<?php echo get_template_directory_uri() ?>/images/customer1.jpg" alt="#"/></i>
                                     <div class="clint">
                                       <h4>Dan Balan</h4>
                                       <span>Client</span>
                                     </div>
                                  </div>
                                   <p>readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their </p>
-                                  <img src="images/test.png" alt="#"/>
+                                  <img src="<?php echo get_template_directory_uri() ?>/images/test.png" alt="#"/>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="custom">
                                  <div class="d_flex">
-                                    <i><img src="images/customer2.jpg" alt="#"/></i>
+                                    <i><img src="<?php echo get_template_directory_uri() ?>/images/customer2.jpg" alt="#"/></i>
                                     <div class="clint">
                                       <h4>Mor Balan</h4>
                                       <span>Client</span>
                                     </div>
                                  </div>
                                   <p>readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their </p>
-                                  <img src="images/test.png" alt="#"/>
+                                  <img src="<?php echo get_template_directory_uri() ?>/images/test.png" alt="#"/>
                               </div>
                            </div>
                         </div>
@@ -261,20 +189,20 @@ get_header();
                            <div class="col-md-6">
                               <div class="custom">
                                  <div class="d_flex">
-                                    <i><img src="images/customer1.jpg" alt="#"/></i>
+                                    <i><img src="<?php echo get_template_directory_uri() ?>/images/customer1.jpg" alt="#"/></i>
                                     <div class="clint">
                                       <h4>Dan Balan</h4>
                                       <span>Client</span>
                                     </div>
                                  </div>
                                   <p>readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their </p>
-                                  <img src="images/test.png" alt="#"/>
+                                  <img src="<?php echo get_template_directory_uri() ?>/images/test.png" alt="#"/>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="custom">
                                  <div class="d_flex">
-                                    <i><img src="images/customer2.jpg" alt="#"/></i>
+                                    <i><img src="<?php echo get_template_directory_uri() ?>/images/customer2.jpg" alt="#"/></i>
                                     <div class="clint">
                                       <h4>Mor Balan</h4>
                                       <span>Client</span>

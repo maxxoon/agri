@@ -153,7 +153,7 @@ _gaq.push(['_trackPageview']);
 
 
 // owl-carousel
-$('.owl-carousel').owlCarousel({
+/*$('.owl-carousel').owlCarousel({
   loop: true,
   margin: 15,
   nav: true,
@@ -163,13 +163,32 @@ $('.owl-carousel').owlCarousel({
       items: 1
     },
     600: {
-      items: 3
+      items: 1
     },
     1000: {
-      items: 3
+      items: 1
     }
   }
 })
+*/
+
+  $(".owl-carousel").owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    items: 1,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    }
+  });
 
 
 // define all UI variable
@@ -211,3 +230,4 @@ $(function () {
     defaultDate: "09/22/2022 "
   });
 });
+
